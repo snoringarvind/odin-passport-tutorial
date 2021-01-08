@@ -1,0 +1,18 @@
+UserModel.findOne({ username: username }, (err, result) => {
+      console.log("result=", result);
+
+      if (err) return done(err);
+      if (result == null) {
+        done(null, false, { msg: "result null" });
+        return;
+      }
+      if (!result) {
+        done(null, false, { msg: "Incorrect username" });
+        return;
+      }
+      if (password != result.password) {
+        done(null, false, { msg: "Incorrect password" });
+        return;
+      }
+      return done(null, result);
+    });

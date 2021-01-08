@@ -1,0 +1,16 @@
+extends layout
+block content
+  h1 Hello World
+  if user
+    a(href="/log-out")
+      button Logout
+  else  
+    h2 Please Log in
+    form(action="/log-in" method='POST')
+      div.form-group
+        label(for="username") Username
+        input#username(type="text" name="username")
+      div.form-group
+        label(for="password") Password
+        input#password(type="text" name="password")
+      button(type='submit') Log-in
