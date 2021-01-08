@@ -32,7 +32,6 @@ const app = express();
 //set view engine
 app.set("view engine", "pug");
 
-console.log(process.env.SECRET);
 //middlewares
 app.use(
   session({
