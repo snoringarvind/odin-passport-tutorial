@@ -49,16 +49,17 @@ passport.use(
       console.log("result=", result);
 
       if (err) return done(err);
+
+      if (result == null) {
+        done(null, false, { msg: "result null" });
+        return;
+      }
+      if (!result) {
+        done(null, false, { msg: "Incorrect username" });
+        return;
+      }
       bcrypt.compare(password, result.password, (bcrypterr, bcryptresult) => {
         if (bcrypterr) return done(err);
-        if (result == null) {
-          done(null, false, { msg: "result null" });
-          return;
-        }
-        if (!result) {
-          done(null, false, { msg: "Incorrect username" });
-          return;
-        }
         if (bcryptresult == false) {
           done(null, false, { msg: "Incorrect password" });
           return;
